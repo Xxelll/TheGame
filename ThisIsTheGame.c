@@ -4,6 +4,20 @@
 #include <stdlib.h>
 //#include <windows.h>
 
+// variables
+int decisionJoueur = 0;
+int pvAsh = 100;
+int pvTerro = 99;
+int g36c = 0;
+int r4c = 0;
+int explosif = 0;
+int grenadeFlash = 0;
+
+int attaqueG36c = 33;
+int attqaueR4c = 50;
+
+
+
 
 int main (int argc, char *argv[]){
 
@@ -39,7 +53,7 @@ printf(".\n");
 //Sleep(1000);
 printf("La route est longue\nVous cherchez une distraction:\n\nRegarder par la fenetre(1)\nParler avec le chauffeur(2)\nVerifier votre arme de poing(3)\n");
 
-int decisionJoueur = 0;
+
 scanf("%d",&decisionJoueur);
 
 
@@ -169,6 +183,55 @@ if(decisionJoueur == 2){
 
     printf("\n");
     printf("\n");
+
+    //Sleep(1000);
+    printf(".\n");
+    //Sleep(1000);
+    printf(".\n");
+    //Sleep(1000);
+    printf(".\n");
+    //Sleep(1000);
+
+    printf("Vous arrivez enfin sur les lieux.\nLa police locale a deja gele la situation en encerclant la maison ou sont retranches les preneurs d’otages\n\nTapez sortir pour descendre de la voiture\n");
+
+    char text[80];
+    char sortir[80] = ("sortir");
+    scanf("%s", text);
+
+    while(strcmp(text,sortir)){
+
+
+    if (strcmp(text,sortir)==0){
+
+     }
+     else {
+       printf("La mission ne va pas se resoudre par magie\n");
+       scanf("%s", sortir);
+     }
+  }
+
+  printf("Devant vous votre unite est dejà en train de se preparer dans le fourgon technique\n");
+  printf("\nRejoindre le fourgon (1)\nObserver la maison (2)\n");
+  scanf("%d",&decisionJoueur);
+  if (decisionJoueur == 1){
+    printf("Vous rejoignez le fourgon pour vous equiper. Vos armes de service sont accrochees sur le râtelier fixe contre la paroi interieur du vehicule.\n");
+  }
+  if (decisionJoueur == 2){
+    printf("C’est une grande maison, elle dispose d’un etage d’un garage et d’un toit à pente douce. 3 accès potentiels pour s’inserer.\n");
+    printf("\nRejoindre le fourgon (1)\nObserver les alentours (2)\n");
+    scanf("%d",&decisionJoueur);
+      if (decisionJoueur ==1) {
+        printf("Vous rejoignez le fourgon pour vous equiper. Vos armes de service sont accrochees sur le râtelier fixe contre la paroi interieur du vehicule.\n");
+      }
+      if (decisionJoueur ==2) {
+        printf("Un jardin entour la maison, il n’y a aucun eclairage et de l’eau sort d’un tuyau d’arrosage laisse au sol\n");
+      }
+  }
+
+
+
+
+
 
 
   return 0;
