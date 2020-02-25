@@ -2,24 +2,33 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include <windows.h>
+#include <time.h>
+#include <windows.h>
 
 // variables
 int decisionJoueur = 0;
-int pvAsh = 100;
-int pvTerro = 99;
+int pvAsh = 150;
+int pvTerro1 = 99;
+int pvTerro2 = 99;
 int g36c = 0;
 int r4c = 0;
 int explosif = 0;
 int grenadeFlash = 0;
 
-int attaqueG36c = 33;
-int attqaueR4c = 50;
+int attaqueG36c = 0;
+int precisionG36c = 0;
+int attaqueR4c = 0;
+int precisionR4c = 0;
+int attaqueTerro = 30;
 
 
 
 
 int main (int argc, char *argv[]){
+
+  srand( time( NULL ) );
+
+  while((pvTerro1 >0 || pvTerro2 > 0) && (pvAsh>0)){
 
   //Intrigue
   printf("Vous etes Eliza Echen alias Ash, membre du groupe d'intervention du SWAT.\n");
@@ -44,13 +53,13 @@ int main (int argc, char *argv[]){
 }
 
 printf("La voiture demarre sirene hurlante et s'enfonce dans la nuit \n");
-//Sleep(1000);
+Sleep(1000);
 printf(".\n");
-//Sleep(1000);
+Sleep(1000);
 printf(".\n");
-//Sleep(1000);
+Sleep(1000);
 printf(".\n");
-//Sleep(1000);
+Sleep(1000);
 printf("La route est longue\nVous cherchez une distraction:\n\nRegarder par la fenetre(1)\nParler avec le chauffeur(2)\nVerifier votre arme de poing(3)\n");
 
 
@@ -184,15 +193,15 @@ if(decisionJoueur == 2){
     printf("\n");
     printf("\n");
 
-    //Sleep(1000);
+    Sleep(1000);
     printf(".\n");
-    //Sleep(1000);
+    Sleep(1000);
     printf(".\n");
-    //Sleep(1000);
+    Sleep(1000);
     printf(".\n");
-    //Sleep(1000);
+    Sleep(1000);
 
-    printf("Vous arrivez enfin sur les lieux.\nLa police locale a deja gele la situation en encerclant la maison ou sont retranches les preneurs d’otages\n\nTapez sortir pour descendre de la voiture\n");
+    printf("Vous arrivez enfin sur les lieux.\nLa police locale a deja gele la situation en encerclant la maison ou sont retranches les preneurs d otages\n\nTapez sortir pour descendre de la voiture\n");
 
     char text[80];
     char sortir[80] = ("sortir");
@@ -210,23 +219,154 @@ if(decisionJoueur == 2){
      }
   }
 
-  printf("Devant vous votre unite est dejà en train de se preparer dans le fourgon technique\n");
+  printf("Devant vous votre unite est deja en train de se preparer dans le fourgon technique\n\n");
   printf("\nRejoindre le fourgon (1)\nObserver la maison (2)\n");
   scanf("%d",&decisionJoueur);
   if (decisionJoueur == 1){
     printf("Vous rejoignez le fourgon pour vous equiper. Vos armes de service sont accrochees sur le râtelier fixe contre la paroi interieur du vehicule.\n");
   }
   if (decisionJoueur == 2){
-    printf("C’est une grande maison, elle dispose d’un etage d’un garage et d’un toit à pente douce. 3 accès potentiels pour s’inserer.\n");
+    printf("C est une grande maison, elle dispose d un etage d un garage et d un toit a pente douce. 3 acces potentiels pour s’inserer.\n");
     printf("\nRejoindre le fourgon (1)\nObserver les alentours (2)\n");
     scanf("%d",&decisionJoueur);
-      if (decisionJoueur ==1) {
-        printf("Vous rejoignez le fourgon pour vous equiper. Vos armes de service sont accrochees sur le râtelier fixe contre la paroi interieur du vehicule.\n");
-      }
       if (decisionJoueur ==2) {
-        printf("Un jardin entour la maison, il n’y a aucun eclairage et de l’eau sort d’un tuyau d’arrosage laisse au sol\n");
+        printf("Un jardin entour la maison, il n y a aucun eclairage et de l eau sort d un tuyau d arrosage laisse au sol\n");
       }
   }
+
+  printf("Vous rejoignez le fourgon pour vous equiper. Vos armes de service sont accrochees sur le ratelier fixe contre la paroi interieur du vehicule.\n");
+  printf("Choisissez entre \n\n(1) une G36c (+90 en precision, +38 en degats)\n\n(2) une R4-C (+75 en precision, +49 en degats)\n\n");
+  scanf("%d",&decisionJoueur);
+
+
+
+
+    if (decisionJoueur ==1) {
+       g36c = 1;
+       attaqueG36c = 33;
+       precisionG36c = 33;
+    }
+
+    if (decisionJoueur ==2) {
+       r4c = 1;
+       attaqueR4c = 50;
+       precisionR4c = 50;
+    }
+
+    explosif = 2;
+    grenadeFlash = 3;
+
+
+printf("Vous etes equipe de %d g36c,",g36c );
+printf(" de %d r4c,",r4c );
+printf(" de %d explosif,",explosif );
+printf(" de %d grenades flash\n\n",grenadeFlash );
+
+printf("Il est temps de lancer l assaut. Par ou choisissez vous d attaquer?\n");
+printf("Par le toit (1)\n\n");
+//printf(Par la porte principale (2)\n\nPar le garage (3)\n");
+scanf("%d",&decisionJoueur);
+
+        // TOIT
+        if (decisionJoueur ==1) {
+          printf("Vous et votre equipe arrivez sur le toit a l aide d une echelle.\n Vous vous mettez en rappel sur le bord du toit afin d atteindre la fenetre de la chambre parentale\n\n");
+          if (explosif>0){
+            printf("Voulez vous placer une charge d infiltration sur la fenetre ? oui (1) non (2)\n");
+            scanf("%d",&decisionJoueur);
+            if (decisionJoueur ==1) {
+              explosif -= 1;
+              printf("Vous placez la charge et vous synchronise votre entree dans la chambre avec la detonation de l explosion\n");
+          }
+        }
+            printf("Deux hostiles entourent l otage\n");
+
+              if (grenadeFlash>0){
+                printf("Voulez vous lancer une grenade flash ? oui (1) non (2)\n");
+                scanf("%d",&decisionJoueur);
+                if (decisionJoueur ==1) {
+                  grenadeFlash -= 1;
+                  printf("-GRENADE FLASH !-\n\n");
+
+                  Sleep(2000);
+
+                  printf("Un eclair blanc suivit d un son strident se produit\n\n Les hostiles sont etourdis par la grendade flash\n\n");
+                  Sleep(1000);
+                  attaqueTerro/2;
+                }
+              }
+              Sleep(1000);
+              printf("Vous devez engager les hostiles\n");
+              printf("Tapez tirer pour neutraliser les hostiles\n");
+
+              char reponse[80];
+              char tirer[80] = ("tirer");
+              scanf("%s", reponse);
+
+
+              if (strcmp(reponse,tirer)==0){
+
+               }
+               else {
+                 printf("ILS ONT ABATTU L OTAGE !\n");
+                 Sleep(5000);
+                 printf("Bon c etait un desastre, reessayons.\n\n\n");
+               }
+
+               while (pvTerro1 > 0 || pvTerro2 > 0){
+  		                  pvTerro1 -= attaqueR4c + attaqueG36c;
+  		                  pvTerro2 -= attaqueR4c + attaqueG36c;
+
+                        printf("L hostile 1 a %d pv\n",pvTerro1);
+                        Sleep(500);
+                        printf("L hostile 2 a %d pv\n",pvTerro2);
+                        Sleep(500);
+
+                        if (pvTerro1 >0){
+                          printf("L hostile 1 riposte !\n");
+                          Sleep(500);
+                          pvAsh -= attaqueTerro;
+                        }
+                        if (pvTerro2 >0){
+                          printf("L hostile 2 riposte !\n");
+                          Sleep(500);
+                          pvAsh -= attaqueTerro;
+                        }
+                        printf("Vous avez %d pv\n",pvAsh);
+                        Sleep(500);
+
+                        printf("Tapez tirer pour neutraliser les hostiles\n");
+
+                        char reponse[80];
+                        char tirer[80] = ("tirer");
+                        scanf("%s", reponse);
+
+
+                        if (strcmp(reponse,tirer)==0){
+
+                         }
+                         else {
+                           printf("ILS ONT ABATTU L OTAGE !\n");
+                           Sleep(5000);
+                           printf("Bon c etait un desastre, reessayons.\n\n\n");
+
+
+                      }
+
+
+        }
+      }
+}
+printf("Les hostiles ont tous ete neutralises, bravo !\n\n Vous venez d etre promu\n");
+
+
+
+
+
+
+
+
+
+
 
 
   return 0;
