@@ -229,10 +229,5 @@ if(decisionJoueur == 2){
   }
 
 
-
-
-
-
-
   return 0;
 }
